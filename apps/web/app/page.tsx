@@ -13,6 +13,7 @@ import {
   MixIcon,
   Pencil1Icon,
   QuestionMarkCircledIcon,
+  RocketIcon,
 } from '@radix-ui/react-icons'
 
 const Home = () => {
@@ -20,16 +21,20 @@ const Home = () => {
     <Container>
       <main>
         <div className='w-full flex flex-column items-center justify-center '>
-          <div className='text-center max-w-lg pt-16'>
+          <div className='text-center max-w-lg pt-20'>
             <h1 className='text-4xl font-extrabold tracking-tight lg:text-5xl'>
-              Your dream job is just a few clicks away with us.
+              Your dream resume is just a few clicks away and with one buck.
             </h1>
             <p className='text-lg text-muted-foreground mt-4'>
               Breathe life into your career with beautifully designed resumes,
               tailored to impress.
             </p>
-            <Button className='mt-6' size='lg'>
-              Craft your resume now
+            <Button
+              className='mt-6 bg-indigo-500 text-white hover:bg-indigo-600 dark:bg-indigo-500 dark:hover:bg-indigo-400 '
+              size='lg'
+            >
+              <RocketIcon className='me-2' />
+              Craft Your Resume Now
             </Button>
             <div className='mt-0.5'>
               <span className=' text-xs text-muted-foreground'>
