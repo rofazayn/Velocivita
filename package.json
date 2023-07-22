@@ -1,0 +1,17 @@
+{
+  "name": "velocivita",
+  "version": "1.0.0",
+  "description": "A SaaS to make resumes and curriculum vitas.",
+  "repository": "https://github.com/auresx/velocivita",
+  "author": "Abderraouf Zine <rofazayn@gmail.com> (https://rofazayn.com)",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "devDependencies": {
+    "turbo": "1.10.9",
+    "typescript": "5.1.6"
+  }
+}
