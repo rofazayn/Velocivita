@@ -10,6 +10,7 @@
     "packages/*",
     "apps/*"
   ],
+  "nohoist": ["@hookform/resolvers/zod"],
   "devDependencies": {
     "turbo": "1.10.9",
     "typescript": "5.1.6"

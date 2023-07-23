@@ -1,12 +1,12 @@
-import Navbar from '@/components/navbar'
-import './globals.css'
+import { ThemeProvider } from '@/components/theme-provider'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
-import Footer from '@/components/footer'
-import { ThemeProvider } from '@/components/theme-provider'
+import './globals.css'
+import { DataProvider } from './context/data-context'
 
 const inter = Inter({
   subsets: ['latin'],
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -20,14 +20,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html lang='en' suppressHydrationWarning={true}>
       <body className={inter.className}>
         <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-          <div className='flex flex-col min-h-screen'>
-            <Navbar />
-            <div className='grow'>{children}</div>
-            <Footer />
-          </div>
+          <DataProvider>{children}</DataProvider>
         </ThemeProvider>
       </body>
     </html>

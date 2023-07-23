@@ -1,3 +1,4 @@
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -13,32 +14,42 @@ import {
   MixIcon,
   Pencil1Icon,
   QuestionMarkCircledIcon,
-  RocketIcon,
 } from '@radix-ui/react-icons'
+import Link from 'next/link'
 
 const Home = () => {
   return (
     <Container>
       <main>
         <div className='w-full flex flex-column items-center justify-center '>
-          <div className='text-center max-w-lg pt-20'>
-            <h1 className='text-4xl font-extrabold tracking-tight lg:text-5xl'>
-              Your dream resume is just a few clicks away and with one buck.
+          <div className='text-center max-w-xl pt-4'>
+            <h1 className='text-3xl font-extrabold tracking-tight lg:text-5xl'>
+              Your ideal resume is merely a few keystrokes &amp; a single dollar
+              away.
             </h1>
-            <p className='text-lg text-muted-foreground mt-4'>
-              Breathe life into your career with beautifully designed resumes,
-              tailored to impress.
+            <p className='text-md lg:text-lg text-muted-foreground mt-4'>
+              Revitalize your professional journey with our exquisitely
+              designed, custom-tailored resumes, crafted to leave a lasting
+              impression.
             </p>
-            <Button
-              className='mt-6 bg-indigo-500 text-white hover:bg-indigo-600 dark:bg-indigo-500 dark:hover:bg-indigo-400 '
-              size='lg'
-            >
-              <RocketIcon className='me-2' />
-              Craft Your Resume Now
-            </Button>
+            <Link href='/composer'>
+              <Button
+                variant='primary'
+                className='text-md font-medium mt-4'
+                size='lg'
+              >
+                {/* <RocketIcon className='me-2' /> */}
+                Craft your Resume Now
+              </Button>
+            </Link>
+
             <div className='mt-0.5'>
               <span className=' text-xs text-muted-foreground'>
-                Your dream resume, just $1!
+                Your dream resume,{' '}
+                <span className='line-through font-bold text-foreground'>
+                  for just $1
+                </span>{' '}
+                <span className='text-green-500 font-bold'>Free</span>
               </span>
             </div>
           </div>
@@ -48,9 +59,10 @@ const Home = () => {
             <Card>
               <CardHeader>
                 <CardTitle>
-                  <div className='flex'>
+                  <div className='flex items-center'>
                     Easy-to-use editor
-                    <Pencil1Icon className='ms-2' />
+                    <Pencil1Icon className='mx-2' />
+                    <Badge variant='outline'>Done</Badge>
                   </div>
                 </CardTitle>
                 <CardDescription>
@@ -62,9 +74,10 @@ const Home = () => {
             <Card>
               <CardHeader>
                 <CardTitle>
-                  <div className='flex'>
+                  <div className='flex items-center'>
                     Customizable templates
-                    <MixIcon className='ms-2' />
+                    <MixIcon className='mx-2' />
+                    <Badge variant='secondary'>Soon</Badge>
                   </div>
                 </CardTitle>
                 <CardDescription>
@@ -76,9 +89,10 @@ const Home = () => {
             <Card>
               <CardHeader>
                 <CardTitle>
-                  <div className='flex'>
+                  <div className='flex items-center'>
                     Affordability
-                    <CardStackIcon className='ms-2' />
+                    <CardStackIcon className='mx-2' />
+                    <Badge variant='outline'>Done</Badge>
                   </div>
                 </CardTitle>
                 <CardDescription>
@@ -90,9 +104,10 @@ const Home = () => {
             <Card>
               <CardHeader>
                 <CardTitle>
-                  <div className='flex'>
+                  <div className='flex items-center'>
                     Guidance and tips
-                    <QuestionMarkCircledIcon className='ms-2' />
+                    <QuestionMarkCircledIcon className='mx-2' />
+                    <Badge variant='secondary'>Soon</Badge>
                   </div>
                 </CardTitle>
                 <CardDescription>
@@ -104,9 +119,10 @@ const Home = () => {
             <Card>
               <CardHeader>
                 <CardTitle>
-                  <div className='flex'>
+                  <div className='flex items-center'>
                     Flexible export options
-                    <FileIcon className='ms-2' />
+                    <FileIcon className='mx-2' />
+                    <Badge variant='secondary'>Soon</Badge>
                   </div>
                 </CardTitle>
                 <CardDescription>
@@ -118,9 +134,10 @@ const Home = () => {
             <Card>
               <CardHeader>
                 <CardTitle>
-                  <div className='flex'>
+                  <div className='flex items-center'>
                     Privacy guaranteed
-                    <FaceIcon className='ms-2' />
+                    <FaceIcon className='mx-2' />
+                    <Badge variant='outline'>Done</Badge>
                   </div>
                 </CardTitle>
                 <CardDescription>
