@@ -2,7 +2,7 @@
 
 import { DataContext } from '@/app/context/data-context'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { CheckIcon } from '@radix-ui/react-icons'
+import { ArrowRightIcon } from '@radix-ui/react-icons'
 import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
@@ -45,21 +45,20 @@ const StepOne = () => {
   function handleStep(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values)
-    setResume(form.getValues())
+    setResume((prev: any) => ({ ...form.getValues(), ...prev }))
     nextStep()
   }
 
   console.log(resume)
 
   return (
-    <div className='grow w-full flex flex-col min-h-full'>
-      <div className='w-full max-w-[420px] pb-40 pt-16 scroll-auto'>
-        <p className='text-xs text-muted-foreground'>First step</p>
-        <h1 className='text-2xl font-bold tracking-tight lg:text-3xl mt-1'>
+    <div className='w-full flex flex-col'>
+      <div className='w-full max-w-[520px] scroll-auto'>
+        <p className='text-xs text-muted-foreground tracking-wide'>Step - 01</p>
+        <h1 className='text-2xl font-bold tracking-tight lg:text-3xl mt-[4px]'>
           Personal information
         </h1>
-        <p className='leading-7 mt-0 font-normal text-sm text-muted-foreground'>
+        <p className='leading-7 mt-0 font-normal text-md text-muted-foreground'>
           Enter your name, professional email and your job title.
         </p>
         <Form {...form}>
@@ -123,9 +122,9 @@ const StepOne = () => {
               />
 
               <div className='mt-5 flex items-center gap-3'>
-                <Button type='submit' variant='primary'>
+                <Button type='submit' variant='primary' size='lg'>
                   Go to next step
-                  <CheckIcon className='ms-2 w-4 h-4' />
+                  <ArrowRightIcon className='ms-2 w-4 h-4' />
                 </Button>
               </div>
             </div>

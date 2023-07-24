@@ -20,8 +20,8 @@ import Link from 'next/link'
 const Home = () => {
   return (
     <Container>
-      <main>
-        <div className='w-full flex flex-column items-center justify-center '>
+      <main className='py-16'>
+        <div className='w-full flex flex-column items-center justify-center'>
           <div className='text-center max-w-xl pt-4'>
             <h1 className='text-3xl font-extrabold tracking-tight lg:text-5xl'>
               Your ideal resume is merely a few keystrokes &amp; a single dollar

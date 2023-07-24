@@ -10,7 +10,7 @@ export default function DashboardLayout({
   return (
     <div className='flex flex-col min-h-screen'>
       <Navbar />
-      <div className='grow py-16'>{children}</div>
+      {children}
       <Footer />
     </div>
   )

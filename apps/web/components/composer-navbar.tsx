@@ -6,7 +6,7 @@ import Container from './ui/container'
 
 const ComposerNavbar = () => {
   return (
-    <div className='fixed inset-x-0 top-0 w-full min-h-[64px] flex flex-col justify-center border-b border-stone-100 dark:border-stone-800 z-50 bg-white dark:bg-stone-950'>
+    <div className='fixed inset-x-0 top-0 w-full h-[68px] flex flex-col justify-center border-b border-stone-200/50 dark:border-stone-800 z-50 bg-white dark:bg-stone-950'>
       <Container>
         <div className='flex items-center justify-between py-4'>
           <div>
@@ -14,11 +14,11 @@ const ComposerNavbar = () => {
               Velocivita./
             </span>
           </div>
-          <div className='flex flex-row gap-2 items-center'>
+          <div className='flex flex-row gap-3 items-center'>
             <ModeToggle />
             <Link href='/'>
               <Button variant='secondary'>
-                Back to homepage
+                Go back
                 <ArrowLeftIcon className='ms-2' />
               </Button>
             </Link>

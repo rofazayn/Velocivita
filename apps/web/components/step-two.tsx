@@ -2,7 +2,7 @@
 
 import { DataContext } from '@/app/context/data-context'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { CheckIcon } from '@radix-ui/react-icons'
+import { ArrowRightIcon } from '@radix-ui/react-icons'
 import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
@@ -19,12 +19,14 @@ import {
 import { Input } from './ui/input'
 
 const formSchema = z.object({
-  name: z.string().min(2, {
-    message: 'Name must be at least 2 characters.',
+  phoneNumber: z.string().min(8, {
+    message: 'Please enter a valid phone number',
   }),
-  email: z.string().email({ message: 'Does not look like an email to me.' }),
-  profession: z.string().min(2, {
-    message: 'Profession must be at least 2 characters.',
+  city: z.string().min(2, {
+    message: 'Please enter a valid city name',
+  }),
+  country: z.string().min(4, {
+    message: 'Please enter a valid country name',
   }),
 })
 
@@ -33,9 +35,9 @@ const StepTwo = () => {
     resolver: zodResolver(formSchema),
     reValidateMode: 'onChange',
     defaultValues: {
-      name: '',
-      email: '',
-      profession: '',
+      phoneNumber: '',
+      city: '',
+      country: '',
     },
   })
   const { nextStep, resume, setResume } = useContext(DataContext)
@@ -45,87 +47,31 @@ const StepTwo = () => {
   function handleStep(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values)
-    setResume(form.getValues())
+    setResume((prev: any) => ({ ...form.getValues(), ...prev }))
     nextStep()
   }
 
   console.log(resume)
 
   return (
-    <div className='grow w-full flex flex-col min-h-full'>
-      <div className='w-full max-w-[420px] pb-40 pt-16 scroll-auto'>
-        <p className='text-xs text-muted-foreground'>First step</p>
-        <h1 className='text-2xl font-bold tracking-tight lg:text-3xl mt-1'>
-          Personal information
+    <div className='w-full flex flex-col'>
+      <div className='w-full max-w-[520px] scroll-auto'>
+        <p className='text-xs text-muted-foreground tracking-wide'>Step - 02</p>
+        <h1 className='text-2xl font-bold tracking-tight lg:text-3xl mt-[4px]'>
+          Contact details
         </h1>
-        <p className='leading-7 mt-0 font-normal text-sm text-muted-foreground'>
-          Enter your name, professional email and your job title.
+        <p className='leading-7 mt-0 font-normal text-md text-muted-foreground'>
+          Enter your phone number, city, and country.
         </p>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleStep)}>
             <div className='grid w-full max-w-sm items-center gap-4 mt-4'>
               <FormField
                 control={form.control}
-                name='name'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Full name</FormLabel>
-                    <FormControl>
-                      <Input placeholder='Enter your full name' {...field} />
-                    </FormControl>
-                    <FormDescription>
-                      This is your full name, ex: Touhami Elmadani.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name='email'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Professional email</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder='Enter your email here'
-                        type='email'
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormDescription>
-                      This is the email you use, ex: touhami@velocivita.com.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name='profession'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Profession</FormLabel>
-                    <FormControl>
-                      <Input
-                        type='text'
-                        placeholder='Enter your job title here'
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormDescription>
-                      What is your current position/job?
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              {/* <FormField
-                control={form.control}
                 name='phoneNumber'
                 render={({ field }) => (
                   <FormItem>
+                    <FormLabel>Phone number</FormLabel>
                     <FormControl>
                       <Input
                         type='text'
@@ -133,50 +79,59 @@ const StepTwo = () => {
                         {...field}
                       />
                     </FormControl>
+                    <FormDescription>
+                      The phone number you use professionally
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name='location'
+                name='city'
                 render={({ field }) => (
                   <FormItem>
+                    <FormLabel>Current city</FormLabel>
                     <FormControl>
                       <Input
                         type='text'
-                        placeholder='Where do you live? ex: Batna, Algeria.'
+                        placeholder='Your city of residency? ex: Batna'
                         {...field}
                       />
                     </FormControl>
+                    <FormDescription>
+                      In what city do you currently live?
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
-              /> */}
-              {/* <FormField
-              control={form.control}
-              name='bio'
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Textarea
-                      placeholder='Tell people a little about yourself - Biography.'
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            /> */}
+              />
+              <FormField
+                control={form.control}
+                name='country'
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Country of residency</FormLabel>
+                    <FormControl>
+                      <Input
+                        type='text'
+                        placeholder='Your country of residency, ex: Algeria'
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormDescription>
+                      In what country do you currently live?
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
               <div className='mt-5 flex items-center gap-3'>
-                <Button type='submit' variant='primary'>
+                <Button type='submit' variant='primary' size='lg'>
                   Go to next step
-                  <CheckIcon className='ms-2 w-4 h-4' />
+                  <ArrowRightIcon className='ms-2 w-4 h-4' />
                 </Button>
-                {/* <span className='text-muted-foreground text-sm'>or</span>
-                  <Link href='/'>
-                    <Button variant='secondary'>Try it later</Button>
-                  </Link> */}
               </div>
             </div>
           </form>

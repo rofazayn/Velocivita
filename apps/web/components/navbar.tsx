@@ -6,15 +6,15 @@ import Container from './ui/container'
 
 const Navbar = () => {
   return (
-    <div className='w-full border-b border-stone-100 dark:border-stone-900'>
+    <div className='w-full border-b border-stone-200/50 dark:border-stone-800 '>
       <Container>
-        <div className='flex items-center justify-between py-4'>
+        <div className='flex items-center justify-between py-4 h-[68px]'>
           <div>
             <span className='text-[16px] leading-0 font-extrabold tracking'>
               Velocivita./
             </span>
           </div>
-          <div className='flex flex-row gap-2 items-center'>
+          <div className='flex flex-row gap-3 items-center'>
             <ModeToggle />
             <Link href='/composer'>
               <Button variant='secondary'>

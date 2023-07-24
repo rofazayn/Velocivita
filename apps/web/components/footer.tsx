@@ -1,11 +1,9 @@
-import React from 'react'
-import Container from './ui/container'
 import { Button } from './ui/button'
-import { RocketIcon } from '@radix-ui/react-icons'
+import Container from './ui/container'
 
 const Footer = () => {
   return (
-    <div className='w-full border-t border-stone-100 dark:border-stone-900'>
+    <div className='border-t border-stone-200/50 dark:border-stone-800 h-[68px]'>
       <Container>
         <div className='flex flex-col md:flex-row items-center justify-between py-3'>
           <div className='flex flex-row gap-0'>

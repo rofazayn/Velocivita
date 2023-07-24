@@ -7,6 +7,7 @@ import manWorkingAnimation from '@/public/assets/man-working-lottie.json'
 import Lottie from 'lottie-react'
 import { useContext } from 'react'
 import { DataContext } from '../context/data-context'
+import StepTwo from '@/components/step-two'
 
 const Composer = () => {
   const { step, maxSteps } = useContext(DataContext)
@@ -15,20 +16,29 @@ const Composer = () => {
       <ComposerNavbar />
       <Container>
         <main
-          className='w-full flex flex-row min-h-full overflow-auto mt-[64px]'
+          className='w-full flex flex-row min-h-full overflow-auto'
           style={{
-            minHeight: 'calc(100vh - 128px)',
+            minHeight: 'calc(100vh - 136px)',
           }}
         >
-          <section className='min-h-full min-w-[50%] flex flex-col justify-between items-center border-e-2 border-stone-100 dark:border-stone-900 '>
-            <div className='w-full min-h-full flex flex-col justify-center'>
-              {step === 1 ? <StepOne /> : <StepOne />}
+          <section className='min-h-full min-w-[50%] flex flex-col justify-between items-center border-e border-stone-200/50 dark:border-stone-800'>
+            <div className='w-full min-h-full flex flex-col justify-center items-center py-24'>
+              {step === 1 ? (
+                <StepOne />
+              ) : step === 2 ? (
+                <StepTwo />
+              ) : (
+                <StepOne />
+              )}
             </div>
           </section>
 
-          <section className='h-full min-h-full min-w-[50%] fixed y-0 start-[50%] bg-stone-50 dark:bg-neutral-900'>
-            <div className='w-full min-h-full flex flex-col items-center pb-12 pt-16 px-8'>
-              <div className='w-full max-w-[420px]'>
+          <section
+            className='fixed min-w-[50%] top-[68px] bottom-[68px]  start-[50%] bg-stone-50 dark:bg-neutral-900 flex flex-col'
+            style={{ height: 'calc(100vh - 136px)' }}
+          >
+            <div className='grow w-full flex flex-col items-center justify-center p-8'>
+              <div className='w-full max-w-[380px]'>
                 <Lottie animationData={manWorkingAnimation} />
               </div>
 
@@ -47,7 +57,7 @@ const Composer = () => {
         </main>
       </Container>
 
-      <div className='fixed inset-x-0 bottom-0 w-full min-h-[64px] bg-white dark:bg-stone-950 flex flex-col justify-center border-t border-stone-100 dark:border-stone-800'>
+      <div className='fixed inset-x-0 bottom-0 w-full h-[68px] bg-white dark:bg-stone-950 flex flex-col justify-center border-t border-stone-200/50 dark:border-stone-800'>
         <Container>
           <div className='w-full flex flex-row items-center gap-4'>
             <Progress
