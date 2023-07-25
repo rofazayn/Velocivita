@@ -53,7 +53,7 @@ const StepOne = () => {
 
   return (
     <div className='w-full flex flex-col'>
-      <div className='w-full max-w-[520px] scroll-auto'>
+      <div className='w-full scroll-auto'>
         <p className='text-xs text-muted-foreground tracking-wide'>Step - 01</p>
         <h1 className='text-2xl font-bold tracking-tight lg:text-3xl mt-[4px]'>
           Personal information
@@ -63,7 +63,7 @@ const StepOne = () => {
         </p>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleStep)}>
-            <div className='grid w-full max-w-sm items-center gap-4 mt-4'>
+            <div className='grid w-full items-center gap-4 mt-4'>
               <FormField
                 control={form.control}
                 name='name'
@@ -71,7 +71,11 @@ const StepOne = () => {
                   <FormItem>
                     <FormLabel>Full name</FormLabel>
                     <FormControl>
-                      <Input placeholder='Enter your full name' {...field} />
+                      <Input
+                        autoFocus
+                        placeholder='Enter your full name'
+                        {...field}
+                      />
                     </FormControl>
                     <FormDescription>
                       This is your full name, ex: Touhami Elmadani.

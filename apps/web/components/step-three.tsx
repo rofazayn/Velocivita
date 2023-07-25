@@ -17,27 +17,20 @@ import {
   FormMessage,
 } from './ui/form'
 import { Input } from './ui/input'
+import { Textarea } from './ui/textarea'
 
 const formSchema = z.object({
-  phoneNumber: z.string().min(8, {
+  summary: z.string().min(16, {
     message: 'Please enter a valid phone number',
-  }),
-  city: z.string().min(2, {
-    message: 'Please enter a valid city name',
-  }),
-  country: z.string().min(4, {
-    message: 'Please enter a valid country name',
   }),
 })
 
-const StepTwo = () => {
+const StepThree = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     reValidateMode: 'onChange',
     defaultValues: {
-      phoneNumber: '',
-      city: '',
-      country: '',
+      summary: '',
     },
   })
   const { nextStep, resume, setResume } = useContext(DataContext)
@@ -56,72 +49,33 @@ const StepTwo = () => {
   return (
     <div className='w-full flex flex-col'>
       <div className='w-full scroll-auto'>
-        <p className='text-xs text-muted-foreground tracking-wide'>Step - 02</p>
+        <p className='text-xs text-muted-foreground tracking-wide'>Step - 03</p>
         <h1 className='text-2xl font-bold tracking-tight lg:text-3xl mt-[4px]'>
-          Contact details
+          Basic info about you
         </h1>
-        <p className='leading-7 mt-0 font-normal text-md text-muted-foreground'>
-          Enter your phone number, city, and country.
+        <p className='leading-7 mt-2 font-normal text-md text-muted-foreground'>
+          Next, let&apos;s articulate your career aspirations or summarise your
+          professional profile. This helps potential employers quickly
+          understand your career goals or professional background.
         </p>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleStep)}>
             <div className='grid w-full items-center gap-4 mt-4'>
               <FormField
                 control={form.control}
-                name='phoneNumber'
+                name='summary'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Phone number</FormLabel>
+                    <FormLabel>Summary</FormLabel>
                     <FormControl>
-                      <Input
+                      <Textarea
                         autoFocus
-                        type='text'
-                        placeholder='Your phone number, ex: +213512345678'
+                        placeholder={`I'm a highly reliable individual who excels at time management and is always bursting with energy...`}
                         {...field}
                       />
                     </FormControl>
                     <FormDescription>
-                      The phone number you use professionally
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name='city'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Current city</FormLabel>
-                    <FormControl>
-                      <Input
-                        type='text'
-                        placeholder='Your city of residency? ex: Batna'
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormDescription>
-                      In what city do you currently live?
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name='country'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Country of residency</FormLabel>
-                    <FormControl>
-                      <Input
-                        type='text'
-                        placeholder='Your country of residency, ex: Algeria'
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormDescription>
-                      In what country do you currently live?
+                      Try to keep it to a maximum of three [3] lines
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -142,4 +96,4 @@ const StepTwo = () => {
   )
 }
 
-export default StepTwo
+export default StepThree

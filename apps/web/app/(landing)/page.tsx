@@ -1,3 +1,4 @@
+'use client'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
@@ -15,9 +16,10 @@ import {
   Pencil1Icon,
   QuestionMarkCircledIcon,
 } from '@radix-ui/react-icons'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 const Home = () => {
+  const router = useRouter()
   return (
     <Container>
       <main className='py-16'>
@@ -32,16 +34,15 @@ const Home = () => {
               designed, custom-tailored resumes, crafted to leave a lasting
               impression.
             </p>
-            <Link href='/composer'>
-              <Button
-                variant='primary'
-                className='text-md font-medium mt-4'
-                size='lg'
-              >
-                {/* <RocketIcon className='me-2' /> */}
-                Craft your Resume Now
-              </Button>
-            </Link>
+            <Button
+              variant='primary'
+              className='text-md font-medium mt-4'
+              size='lg'
+              onClick={() => router.push('/composer')}
+            >
+              {/* <RocketIcon className='me-2' /> */}
+              Craft your Resume Now
+            </Button>
 
             <div className='mt-0.5'>
               <span className=' text-xs text-muted-foreground'>
@@ -55,7 +56,7 @@ const Home = () => {
           </div>
         </div>
         <div className='mt-16'>
-          <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
+          <div className='grid grid-cols-1 gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-3'>
             <Card>
               <CardHeader>
                 <CardTitle>
