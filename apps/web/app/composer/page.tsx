@@ -1,14 +1,15 @@
 'use client'
 import ComposerNavbar from '@/components/composer-navbar'
+import StepFour from '@/components/step-four'
 import StepOne from '@/components/step-one'
+import StepThree from '@/components/step-three'
+import StepTwo from '@/components/step-two'
 import Container from '@/components/ui/container'
 import { Progress } from '@/components/ui/progress'
 import manWorkingAnimation from '@/public/assets/man-working-lottie.json'
 import Lottie from 'lottie-react'
 import { useContext } from 'react'
 import { DataContext } from '../context/data-context'
-import StepTwo from '@/components/step-two'
-import StepThree from '@/components/step-three'
 
 const Composer = () => {
   const { step, maxSteps } = useContext(DataContext)
@@ -23,13 +24,15 @@ const Composer = () => {
           }}
         >
           <section className='grow min-h-full w-full max-w-[50%] flex flex-col justify-between items-center border-e border-stone-200/50 dark:border-stone-800 pe-16'>
-            <div className='grow w-full min-h-full flex flex-col justify-center items-center py-24'>
+            <div className='grow w-full min-h-full flex flex-col justify-center items-center pt-24 pb-32'>
               {step === 1 ? (
                 <StepOne />
               ) : step === 2 ? (
                 <StepTwo />
               ) : step === 3 ? (
                 <StepThree />
+              ) : step === 4 ? (
+                <StepFour />
               ) : (
                 <StepOne />
               )}
@@ -50,8 +53,8 @@ const Composer = () => {
                   Compiling your resume...
                 </p>
                 <p className='text-sm text-muted-foreground mt-1'>
-                  We will show you how your resume looks like once we collect
-                  enough data after you go through a few steps.
+                  We will show you how your resume looks like once you enter
+                  enough data
                 </p>
               </div>
             </div>

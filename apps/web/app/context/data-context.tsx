@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 
 const MAX_STEPS: number = 5
 
@@ -15,9 +15,9 @@ const DataContext = createContext(
   }
 )
 const DataProvider = ({ children }: { children: React.ReactNode }) => {
-  const [step, setStep] = useState<number>(1)
+  const [step, setStep] = useState<number>(4)
   const [maxSteps, _setMaxSteps] = useState<number>(MAX_STEPS)
-  const [resume, setResume] = useState<any>({})
+  const [resume, setResume] = useState<any>({ work: [] })
 
   const nextStep = async () => {
     setStep((prev) => (prev !== maxSteps ? prev + 1 : maxSteps))
@@ -26,6 +26,10 @@ const DataProvider = ({ children }: { children: React.ReactNode }) => {
   const prevStep = async () => {
     setStep((prev) => (prev !== 1 ? prev - 1 : prev))
   }
+
+  useEffect(() => {
+    console.log(resume)
+  }, [resume])
 
   return (
     <DataContext.Provider

@@ -16,13 +16,15 @@ import {
   FormLabel,
   FormMessage,
 } from './ui/form'
-import { Input } from './ui/input'
 import { Textarea } from './ui/textarea'
 
 const formSchema = z.object({
-  summary: z.string().min(16, {
-    message: 'Please enter a valid phone number',
-  }),
+  summary: z
+    .string()
+    .min(40, {
+      message: 'Your summary must be at least 40 characters long',
+    })
+    .max(160, { message: 'Your summary must not exceed 160 characters' }),
 })
 
 const StepThree = () => {
@@ -43,8 +45,6 @@ const StepThree = () => {
     setResume((prev: any) => ({ ...form.getValues(), ...prev }))
     nextStep()
   }
-
-  console.log(resume)
 
   return (
     <div className='w-full flex flex-col'>

@@ -49,8 +49,6 @@ const StepOne = () => {
     nextStep()
   }
 
-  console.log(resume)
-
   return (
     <div className='w-full flex flex-col'>
       <div className='w-full scroll-auto'>

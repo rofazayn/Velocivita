@@ -17,7 +17,7 @@ const ComposerNavbar = () => {
           <div className='flex flex-row gap-3 items-center'>
             <ModeToggle />
             <Link href='/'>
-              <Button variant='secondary'>
+              <Button variant='outline'>
                 Go back
                 <ArrowLeftIcon className='ms-2' />
               </Button>

@@ -17,7 +17,7 @@ const Navbar = () => {
           <div className='flex flex-row gap-3 items-center'>
             <ModeToggle />
             <Link href='/composer'>
-              <Button variant='secondary'>
+              <Button variant='outline'>
                 Try it for free
                 <RocketIcon className='ms-2' />
               </Button>
