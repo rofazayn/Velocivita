@@ -2,7 +2,7 @@
 
 import React, { createContext, useEffect, useState } from 'react'
 
-const MAX_STEPS: number = 5
+const MAX_STEPS: number = 7
 
 const DataContext = createContext(
   {} as {
@@ -15,9 +15,14 @@ const DataContext = createContext(
   }
 )
 const DataProvider = ({ children }: { children: React.ReactNode }) => {
-  const [step, setStep] = useState<number>(4)
+  const [step, setStep] = useState<number>(6)
   const [maxSteps, _setMaxSteps] = useState<number>(MAX_STEPS)
-  const [resume, setResume] = useState<any>({ work: [] })
+  const [resume, setResume] = useState<any>({
+    work: [],
+    education: [],
+    skills: [],
+    certifications: [],
+  })
 
   const nextStep = async () => {
     setStep((prev) => (prev !== maxSteps ? prev + 1 : maxSteps))

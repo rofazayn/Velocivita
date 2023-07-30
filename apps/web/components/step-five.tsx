@@ -28,35 +28,29 @@ import {
 } from './ui/form'
 import { Input } from './ui/input'
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover'
-import { Textarea } from './ui/textarea'
 
 const formSchema = z.object({
-  jobTitle: z.string().min(6, {
-    message: 'Please enter a valid job title',
+  degree: z.string().min(6, {
+    message: 'Please enter a valid degree and speciality',
   }),
-  companyName: z.string().min(2, {
-    message: 'Please enter a valid company name',
+  institution: z.string().min(2, {
+    message: 'Please enter a valid institution name',
   }),
   dateFrom: z.date(),
   dateTo: z.date(),
   isOngoing: z.boolean(),
-  achievements: z
-    .string()
-    .min(0)
-    .max(120, { message: 'Your achievements must not exceed 120 characters' }),
 })
 
-const StepFour = () => {
+const StepFive = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     reValidateMode: 'onChange',
     defaultValues: {
-      jobTitle: '',
-      companyName: '',
+      degree: '',
+      institution: '',
       dateFrom: new Date(),
       dateTo: new Date(),
       isOngoing: false,
-      achievements: '',
     },
   })
   const { nextStep, resume, setResume } = useContext(DataContext)
@@ -67,9 +61,9 @@ const StepFour = () => {
     await form.trigger()
     if (form.formState.isValid) {
       let newExperience = { id: uuid(), ...form.getValues() }
-      let newExperienceArr = resume.work.push(newExperience)
+      let newExperienceArr = resume.education.push(newExperience)
       setResume((prev: any) => ({
-        work: newExperienceArr,
+        education: newExperienceArr,
         ...prev,
       }))
 
@@ -79,17 +73,19 @@ const StepFour = () => {
   }
 
   function handleDelete(id: string) {
-    let newExperienceArray = resume.work.filter((exp: any) => exp.id !== id)
-    setResume((prev: any) => ({ ...prev, work: newExperienceArray }))
+    let newExperienceArray = resume.education.filter(
+      (exp: any) => exp.id !== id
+    )
+    setResume((prev: any) => ({ ...prev, education: newExperienceArray }))
   }
 
   function handleStep(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     let newExperience = { id: uuid(), ...form.getValues() }
-    let newExperienceArr = resume.work.push(newExperience)
+    let newExperienceArr = resume.education.push(newExperience)
     setResume((prev: any) => ({
-      work: newExperienceArr,
+      education: newExperienceArr,
       ...prev,
     }))
     nextStep()
@@ -98,33 +94,34 @@ const StepFour = () => {
   return (
     <div className='w-full flex flex-col'>
       <div className='w-full scroll-auto'>
-        <p className='text-xs text-muted-foreground tracking-wide'>Step - 04</p>
+        <p className='text-xs text-muted-foreground tracking-wide'>Step - 05</p>
         <h1 className='text-2xl font-bold tracking-tight lg:text-3xl mt-[4px]'>
-          Work experience
+          Education
         </h1>
         <p className='leading-7 mt-2 font-normal text-md text-muted-foreground'>
-          List your previous roles, starting with the most recent. Include
-          roles, responsibilities, and achievements.
+          Catalog your degrees, starting with the highest, along with
+          institutions and years.
         </p>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleStep)}>
             <div className='grid w-full items-center gap-4 mt-4'>
               <FormField
                 control={form.control}
-                name='jobTitle'
+                name='degree'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Job title</FormLabel>
+                    <FormLabel>Degree Earned</FormLabel>
                     <FormControl>
                       <Input
                         autoFocus
                         type='text'
-                        placeholder='Your job title, ex: JavaScript Developer'
+                        placeholder={`e.g., 'Bachelor's in Computer Science`}
                         {...field}
                       />
                     </FormControl>
                     <FormDescription>
-                      What is/was your position at the company
+                      The type of degree, e.g., Bachelor&apos;s, Master&apos;s,
+                      etc.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -132,39 +129,20 @@ const StepFour = () => {
               />
               <FormField
                 control={form.control}
-                name='companyName'
+                name='institution'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Company name</FormLabel>
+                    <FormLabel>Educational Institution</FormLabel>
                     <FormControl>
                       <Input
                         type='text'
-                        placeholder='Your company, ex: AuresX'
+                        placeholder={`e.g., 'Harvard University'`}
                         {...field}
                       />
                     </FormControl>
                     <FormDescription>
-                      What is/was your company name for this position
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name='achievements'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Achievements and responsabilities</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        placeholder={`e.g., Developed key features for the main product..`}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormDescription>
-                      Try to keep it to a maximum of three [3] lines
+                      The name of the school, university, or other educational
+                      institution where you earned the degree.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
@@ -274,11 +252,11 @@ const StepFour = () => {
                           htmlFor='ongoing'
                           className='text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
                         >
-                          I&apos;m currently working at this job
+                          I&apos;m currently pursuing this degree
                         </label>
                         <p className='text-sm text-muted-foreground'>
-                          Please check this box if you are still at this
-                          position
+                          Check this box if you are currently pursuing this
+                          degree and have not yet completed it.
                         </p>
                       </div>
                     </div>
@@ -286,32 +264,31 @@ const StepFour = () => {
                 )}
               />
 
-              {resume.work && resume.work.length > 0 && (
+              {resume.education && resume.education.length > 0 && (
                 <>
                   <div className='mb-0 mt-4 w-full'>
-                    <FormLabel>Already added experience</FormLabel>
-                    {resume.work.map((exp: any) => (
+                    <FormLabel>Previously added education</FormLabel>
+                    {resume.education.map((edu: any) => (
                       <div
                         className='w-full mt-2 mb-3 rounded-md px-4 py-3 flex flex-row gap-4 justify-between items-end border-[1px] border-input/60'
-                        key={exp.id}
+                        key={edu.id}
                       >
                         <div className='w-full'>
                           <p className='text-sm leading-6'>
-                            <span className='font-medium'>{exp.jobTitle}</span>{' '}
-                            at{' '}
+                            <span className='font-medium'>{edu.degree}</span> at{' '}
                             <span className='font-medium'>
-                              {exp.companyName}
+                              {edu.institution}
                             </span>
                           </p>
                           <p className='text-sm mt-4'>
                             <span className='font-medium'>
-                              {format(exp.dateFrom, 'PPP')}
+                              {format(edu.dateFrom, 'PPP')}
                             </span>{' '}
                             -{' '}
                             <span className='font-medium'>
-                              {exp.isOngoing
+                              {edu.isOngoing
                                 ? 'To this day'
-                                : format(exp.dateTo, 'PPP')}
+                                : format(edu.dateTo, 'PPP')}
                             </span>
                           </p>
                         </div>
@@ -320,7 +297,7 @@ const StepFour = () => {
                             variant='outline'
                             size='icon'
                             type='button'
-                            onClick={() => handleDelete(exp.id)}
+                            onClick={() => handleDelete(edu.id)}
                           >
                             <TrashIcon />
                           </Button>
@@ -354,4 +331,4 @@ const StepFour = () => {
   )
 }
 
-export default StepFour
+export default StepFive

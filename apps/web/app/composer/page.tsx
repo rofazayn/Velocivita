@@ -1,7 +1,9 @@
 'use client'
 import ComposerNavbar from '@/components/composer-navbar'
+import StepFive from '@/components/step-five'
 import StepFour from '@/components/step-four'
 import StepOne from '@/components/step-one'
+import StepSix from '@/components/step-six'
 import StepThree from '@/components/step-three'
 import StepTwo from '@/components/step-two'
 import Container from '@/components/ui/container'
@@ -33,6 +35,10 @@ const Composer = () => {
                 <StepThree />
               ) : step === 4 ? (
                 <StepFour />
+              ) : step === 5 ? (
+                <StepFive />
+              ) : step === 6 ? (
+                <StepSix />
               ) : (
                 <StepOne />
               )}
@@ -73,7 +79,7 @@ const Composer = () => {
             <div className='grow text-end'>
               <p className='leading-0 text-sm text-muted-foreground'>
                 <span className='text-foreground font-bold'>Step {step}</span> /{' '}
-                <span className='font-bold'>5</span>
+                <span className='font-bold'>{maxSteps}</span>
               </p>
             </div>
           </div>

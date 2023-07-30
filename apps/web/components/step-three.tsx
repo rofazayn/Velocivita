@@ -24,7 +24,7 @@ const formSchema = z.object({
     .min(40, {
       message: 'Your summary must be at least 40 characters long',
     })
-    .max(160, { message: 'Your summary must not exceed 160 characters' }),
+    .max(400, { message: 'Your summary must not exceed 160 characters' }),
 })
 
 const StepThree = () => {
