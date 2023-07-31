@@ -10,8 +10,10 @@ import {
 import Container from '@/components/ui/container'
 import {
   CardStackIcon,
+  EyeOpenIcon,
   FaceIcon,
   FileIcon,
+  ListBulletIcon,
   MixIcon,
   Pencil1Icon,
   QuestionMarkCircledIcon,
@@ -56,14 +58,45 @@ const Home = () => {
           </div>
         </div>
         <div className='mt-16'>
-          <div className='grid grid-cols-1 gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-3'>
+          <div className='grid grid-cols-1 gap-4 md:gap-5 md:grid-cols-2 lg:grid-cols-3'>
+            <Card>
+              <CardHeader>
+                <CardTitle>
+                  <div className='flex items-center'>
+                    Step-by-Step guide
+                    <ListBulletIcon className='mx-2' />
+                    <Badge variant='outline'>Done</Badge>
+                  </div>
+                </CardTitle>
+                <CardDescription>
+                  Use our step-by-step guide to create your professional resume
+                  with ease. No technical skills required, just follow the
+                  instructions.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>
+                  <div className='flex items-center'>
+                    Real-Time preview
+                    <EyeOpenIcon className='mx-2' />
+                    <Badge variant='secondary'>Soon</Badge>
+                  </div>
+                </CardTitle>
+                <CardDescription>
+                  See changes in real-time as you build your resume. Our live
+                  preview ensures that what you see is what you get.
+                </CardDescription>
+              </CardHeader>
+            </Card>
             <Card>
               <CardHeader>
                 <CardTitle>
                   <div className='flex items-center'>
                     Easy-to-use editor
                     <Pencil1Icon className='mx-2' />
-                    <Badge variant='outline'>Done</Badge>
+                    <Badge variant='secondary'>Soon</Badge>
                   </div>
                 </CardTitle>
                 <CardDescription>

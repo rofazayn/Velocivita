@@ -15,7 +15,7 @@ const DataContext = createContext(
   }
 )
 const DataProvider = ({ children }: { children: React.ReactNode }) => {
-  const [step, setStep] = useState<number>(6)
+  const [step, setStep] = useState<number>(1)
   const [maxSteps, _setMaxSteps] = useState<number>(MAX_STEPS)
   const [resume, setResume] = useState<any>({
     work: [],
