@@ -1,5 +1,6 @@
 import { RocketIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
+import Logo from './logo'
 import { ModeToggle } from './theme-toggle'
 import { Button } from './ui/button'
 import Container from './ui/container'
@@ -9,11 +10,7 @@ const Navbar = () => {
     <div className='w-full border-b border-stone-200/50 dark:border-stone-800 '>
       <Container>
         <div className='flex items-center justify-between py-4 h-[68px]'>
-          <div>
-            <span className='text-[16px] leading-0 font-extrabold tracking'>
-              Velocivita./
-            </span>
-          </div>
+          <Logo />
           <div className='flex flex-row gap-3 items-center'>
             <ModeToggle />
             <Link href='/composer'>
