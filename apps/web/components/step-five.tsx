@@ -280,7 +280,7 @@ const StepFive = () => {
                               {edu.institution}
                             </span>
                           </p>
-                          <p className='text-sm mt-4'>
+                          <p className='text-sm mt-2'>
                             <span className='font-medium'>
                               {format(edu.dateFrom, 'PPP')}
                             </span>{' '}
@@ -308,7 +308,7 @@ const StepFive = () => {
                 </>
               )}
             </div>
-            <div className='flex items-center gap-4 mt-8'>
+            <div className='flex items-center gap-4 mt-12'>
               <Button
                 variant='outline'
                 size='lg'

@@ -12,9 +12,12 @@ import manWorkingAnimation from '@/public/assets/man-working-lottie.json'
 import Lottie from 'lottie-react'
 import { useContext } from 'react'
 import { DataContext } from '../context/data-context'
+import StepSeven from '@/components/step-seven'
+import { Canvas, PDFViewer } from '@react-pdf/renderer'
+import RenderedPDF from '@/components/rendered-pdf'
 
 const Composer = () => {
-  const { step, maxSteps } = useContext(DataContext)
+  const { resume, step, maxSteps } = useContext(DataContext)
   return (
     <>
       <ComposerNavbar />
@@ -25,8 +28,8 @@ const Composer = () => {
             minHeight: 'calc(100vh - 136px)',
           }}
         >
-          <section className='grow min-h-full w-full max-w-[50%] flex flex-col justify-between items-center border-e border-stone-200/50 dark:border-stone-800 pe-16'>
-            <div className='grow w-full min-h-full flex flex-col justify-center items-center pt-24 pb-32'>
+          <section className='grow min-h-full w-full max-w-[50%] flex flex-col justify-between items-start border-e border-stone-200/50 dark:border-stone-800 pe-16'>
+            <div className='grow w-full min-h-full flex flex-col justify-center items-center pt-24 pb-32 max-w-[500px]'>
               {step === 1 ? (
                 <StepOne />
               ) : step === 2 ? (
@@ -39,6 +42,8 @@ const Composer = () => {
                 <StepFive />
               ) : step === 6 ? (
                 <StepSix />
+              ) : step === 7 ? (
+                <StepSeven />
               ) : (
                 <StepOne />
               )}
@@ -50,19 +55,37 @@ const Composer = () => {
             style={{ height: 'calc(100vh - 136px)' }}
           >
             <div className='grow w-full flex flex-col items-center justify-center p-8'>
-              <div className='w-full max-w-[380px] -mt-8'>
-                <Lottie animationData={manWorkingAnimation} />
-              </div>
+              {resume && step > 1 ? (
+                <>
+                  {/* <PDFViewer height={'100%'} width={'100%'} showToolbar={false}> */}
+                  <canvas
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      backgroundColor: 'red',
+                    }}
+                  >
+                    <RenderedPDF />
+                  </canvas>
+                  {/* </PDFViewer> */}
+                </>
+              ) : (
+                <>
+                  <div className='w-full max-w-[380px] -mt-8'>
+                    <Lottie animationData={manWorkingAnimation} />
+                  </div>
 
-              <div className='max-w-xs text-center mt-4'>
-                <p className='text-md font-medium text-foreground'>
-                  Compiling your resume...
-                </p>
-                <p className='text-sm text-muted-foreground mt-1'>
-                  We will show you how your resume looks like once you enter
-                  enough data
-                </p>
-              </div>
+                  <div className='max-w-xs text-center mt-4'>
+                    <p className='text-md font-medium text-foreground'>
+                      Compiling your resume...
+                    </p>
+                    <p className='text-sm text-muted-foreground mt-1'>
+                      We will show you how your resume looks like once you enter
+                      enough data
+                    </p>
+                  </div>
+                </>
+              )}
             </div>
           </section>
           {/* <section className='min-h-full min-w-[50%] '></section> */}

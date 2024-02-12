@@ -20,11 +20,11 @@ import { Input } from './ui/input'
 
 const formSchema = z.object({
   name: z.string().min(2, {
-    message: 'Name must be at least 2 characters.',
+    message: 'Name must be at least 2 characters',
   }),
-  email: z.string().email({ message: 'Does not look like an email to me.' }),
+  email: z.string().email({ message: 'Does not look like an email to us' }),
   profession: z.string().min(2, {
-    message: 'Profession must be at least 2 characters.',
+    message: 'Profession must be at least 2 characters',
   }),
   dob: z
     .string()
@@ -141,13 +141,12 @@ const StepOne = () => {
                     <FormLabel>Date of birth</FormLabel>
                     <FormControl>
                       <Input
-                        autoFocus
                         placeholder='Enter your date of birth'
                         {...field}
                       />
                     </FormControl>
                     <FormDescription>
-                      This is your full name, ex: 20-05-1998
+                      Your birthdate, ex: 20-05-1998
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
